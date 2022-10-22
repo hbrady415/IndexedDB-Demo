@@ -1,4 +1,4 @@
-
+var b = false;
 let db;
 var oStoreName = "RecordSets";
 
@@ -20,6 +20,10 @@ const request = indexedDB.open("DBTest", 1);
 request.onupgradeneeded = function (){
     db = request.result;
     store = db.createObjectStore(oStoreName, {keyPath: "id"});  
+    if(b){
+     var sRecords = "blah blah blah";
+        vvSaveToIDB("11250|sRecords" , sRecords);
+    }
 };
 
 request.onsuccess = async function () { db = request.result
@@ -27,7 +31,7 @@ request.onsuccess = async function () { db = request.result
                                         console.log(valuey);
 
                                 };
-if(1 == 1){
+if(!b){
     // if database does exist force through here to give it a record
     setTimeout(() => { 
         var sRecords = "blah blah blah";
